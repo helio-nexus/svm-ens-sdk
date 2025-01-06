@@ -1,0 +1,116 @@
+# Project Instructions
+
+Use specification and guidelines as you build the app.
+
+Write the complete code for every step. Do not get lazy.
+
+Your goal is to completely finish whatever I ask for.
+
+You will see <ai_context> tags in the code. These are context tags that you should use to help you understand the codebase.
+
+## Overview
+
+This is a web app template.
+
+## Tech Stack
+
+- Frontend: Typescript, solana, web3.js, anchor
+- Deployment: GitHub
+
+## Project Structure
+
+- `src` - folder for all the code
+  - `idl` - idl for the program
+  - `services` - services for the program
+- `utils` - utils for the program
+- `index` - main export file
+
+## Rules
+
+Follow these rules when building the app.
+
+### General Rules
+
+- Use `@` to import anything from the app unless otherwise specified
+- Use kebab case for all files and folders unless otherwise specified
+- Don't update shadcn components unless otherwise specified
+
+#### Env Rules
+
+- If you update environment variables, update the `.env.example` file
+- All environment variables should go in `.env.local`
+- You must not use by using `process.env.VARIABLE_NAME`. you can use it only in tests. env is for testing purposes only
+
+### SDK rules
+
+
+Example of an get owner function:
+
+
+```ts
+      // Fetch the owner of the largest token account
+      const largestAccounts = await CONNECTION.getTokenLargestAccounts(
+        new PublicKey(mint)
+      );
+      if (!largestAccounts.value || largestAccounts.value.length === 0) {
+        throw new Error(`No largest accounts found for mint: ${mint}`);
+      }
+
+      const largestAccountInfo = await CONNECTION.getParsedAccountInfo(
+        largestAccounts.value[0].address
+      );
+      if (!largestAccountInfo.value) {
+        throw new Error(
+          `No account info found for address: ${largestAccounts.value[0].address.toBase58()}`
+        );
+      }
+
+      const owner = (largestAccountInfo.value.data as ParsedAccountData).parsed
+        .info.owner;
+      const ownerPublicKey = owner.toString();
+```
+
+Example of an get metadata function:
+
+
+```ts
+import { getTokenMetadata, TOKEN_2022_PROGRAM_ID } from "@solana/spl-token";
+      // Fetch metadata
+      const metadata = await getTokenMetadata(
+        CONNECTION,
+        new PublicKey(mint),
+        "confirmed",
+        TOKEN_2022_PROGRAM_ID
+      );
+
+      // Populate the ITokenData object
+      const res: ITokenData = new TokenDataModel({
+        mint,
+        name: domainOnchainData.name.toString(),
+        symbol: metadata!.symbol,
+        uri: metadata!.uri,
+        domain: metadata!.name,
+        extension: metadata!.additionalMetadata.find(
+          (am) => am[0] == "extension"
+        )![1],
+        owner: ownerPublicKey,
+        isPrimary: true,
+        additionalMetadata: metadata!.additionalMetadata,
+        createdAt: metadata!.additionalMetadata.find(
+          (am) => am[0] == "created_at"
+        )![1],
+        updatedAt: metadata!.additionalMetadata.find(
+          (am) => am[0] == "updated_at"
+        )![1],
+      });
+```
+
+### Auth Rules
+
+Follow these rules when working on auth.
+
+It uses Clerk for authentication.
+
+#### General Rules
+
+- put service into services folder
