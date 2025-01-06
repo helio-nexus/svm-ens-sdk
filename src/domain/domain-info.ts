@@ -1,6 +1,3 @@
-/**
- * DomainInfo structure to represent domain data resolved on-chain.
- */
 export interface DomainInfo {
   mint: string;
   name: string;
