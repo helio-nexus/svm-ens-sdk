@@ -16,7 +16,7 @@ yarn add @helio-nexus/svm-ens-sdk
 
 ### Import the SDK Methods
 ```ts
-import { resolveByDomainName, getPrimaryDomain } from "svm-ens-sdk";
+import { resolveByDomainName, getPrimaryDomain } from "@helio-nexus/svm-ens-sdk";
 ```
 ### Initialize a Solana Connection
 To interact with the Solana blockchain, provide a Connection object from @solana/web3.js:
@@ -24,7 +24,7 @@ To interact with the Solana blockchain, provide a Connection object from @solana
 ```ts
 import { Connection, clusterApiUrl } from "@solana/web3.js";
 
-const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
+const connection = new Connection("https://mainnetbeta-rpc.eclipse.xyz", "confirmed");
 ```
 ### Resolve a Domain
 You can fetch the on-chain record for a domain name:
