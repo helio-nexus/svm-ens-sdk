@@ -2,7 +2,6 @@ import { PublicKey, ParsedAccountData, Connection } from "@solana/web3.js";
 import { AnchorProvider, Program } from "@coral-xyz/anchor";
 import { connection, PROGRAM_ID_SOLNAME } from "../config";
 import { findDomainPDA, findPrimaryDomainPDA, InterfaceSolnames } from "../utils";
-// UPDATED: import DomainInfo from domain-info.ts
 import { DomainInfo } from "../model/domain-info";
 import * as anchor from "@coral-xyz/anchor";
 import { Solnames } from "../idl/solnames";
@@ -103,19 +102,17 @@ async function fetchOwnerAndMetadata(
 export async function resolveByDomainName(
   connection: Connection,
   domainName: string
-): Promise<DomainInfo | null> {
+): Promise<{ result: DomainInfo | null; error?: string }> {
   try {
     // Initialize the Program
     const program = getProgram(connection);
     // Find the domain account on-chain
-    const domainAccount =  findDomainPDA(domainName);
+    const domainAccount = findDomainPDA(domainName);
 
     // Fetch domain on-chain data
     let domainOnchainData;
     try {
-      domainOnchainData = await program.account.domain.fetch(
-        domainAccount.pubkey
-      );
+      domainOnchainData = await program.account.domain.fetch(domainAccount.pubkey);
     } catch (err) {
       throw new Error(`No domain found on-chain for domain: ${domainName}`);
     }
@@ -144,7 +141,7 @@ export async function resolveByDomainName(
     }
 
     const domainInfo: DomainInfo = {
-      mint: mint,
+      mint,
       name: tokenData.name,
       symbol: tokenData.symbol,
       uri: tokenData.uri,
@@ -157,21 +154,21 @@ export async function resolveByDomainName(
       updatedAt: tokenData.updatedAt
     };
 
-    return domainInfo;
+    return { result: domainInfo };
   } catch (error: any) {
-    throw error;
+    return { result: null, error: error.message || "Unknown error" };
   }
 }
 
- /**
-   * Get the primary domain owned by a specific owner (on-chain).
-   * @param ownerPubkey - Owner's public key as a string.
-   * @returns The primary domain owned by the owner, or null if not found.
-   */
- export async function getPrimaryDomain(
+/**
+ * Get the primary domain owned by a specific owner (on-chain).
+ * @param ownerPubkey - Owner's public key as a string.
+ * @returns An object containing { result: DomainInfo | null, error?: string }.
+ */
+export async function getPrimaryDomain(
   connection: Connection,
   ownerPubkey: string
-): Promise<DomainInfo | null> {
+): Promise<{ result: DomainInfo | null; error?: string }> {
   try {
     // Validate owner public key format
     const publicKeyRegex = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
@@ -214,6 +211,7 @@ export async function resolveByDomainName(
     }
     const mint = domainDataOnChain.mint;
     const tokenData = await fetchOwnerAndMetadata(connection, mint.toBase58());
+
     // 4) Fetch the owner of the largest token account
     if (tokenData.owner.toString() !== ownerPubkey) {
       throw new Error(
@@ -235,8 +233,8 @@ export async function resolveByDomainName(
       updatedAt: tokenData.updatedAt
     };
 
-    return domainInfo;
+    return { result: domainInfo };
   } catch (error: any) {
-    throw error;
+    return { result: null, error: error.message || "Unknown error" };
   }
 }

@@ -15,7 +15,7 @@ describe("domain-service tests", () => {
     const result = await getPrimaryDomain(connection, targetOwner);
     console.log("primary domain is:", result);
     // Expect either null or the domain string "alabama.eclipse"
-    expect(result === null || typeof result === "string").toBe(true);
+    expect(result.result != null).toBe(true);
   });
 
   it("should attempt to resolve a domain name (returns null if not found)", async () => {
@@ -23,7 +23,7 @@ describe("domain-service tests", () => {
     const domainAcc = await resolveByDomainName(connection, nonPrimaryDomain);
     console.log("resolved domain account:", domainAcc);
     // Domain account can be null or an object
-    expect(domainAcc === null).toBe(true);
+    expect(domainAcc.error != null).toBe(true);
   }); 
 
   it("should resolve a domain name (returns null if not found)", async () => {
@@ -31,6 +31,6 @@ describe("domain-service tests", () => {
     const domainAcc = await resolveByDomainName(connection, primaryDomain);
     console.log("resolved domain account:", domainAcc);
     // Domain account can be null or an object
-    expect(domainAcc?.owner.toString() === targetOwner).toBe(true);
+    expect(domainAcc.result?.owner.toString() === targetOwner).toBe(true);
   }); 
 });
