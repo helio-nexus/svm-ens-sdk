@@ -1,5 +1,5 @@
 import { getPrimaryDomain, resolveDomainName } from './domain-service';
-import { DomainInfo } from './domain/model';
+import { DomainInfo } from './model/model';
 
 export {
   getPrimaryDomain,

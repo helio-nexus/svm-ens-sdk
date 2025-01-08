@@ -6,9 +6,3533 @@
     "spec": "0.1.0",
     "description": "Created with Anchor"
   },
-  "instructions": [],
-  "accounts": [],
-  "events": [],
-  "errors": [],
-  "types": []
+  "instructions": [
+    {
+      "name": "add_royalties",
+      "docs": [
+        "add royalties to mint"
+      ],
+      "discriminator": [
+        195,
+        251,
+        126,
+        230,
+        187,
+        134,
+        168,
+        210
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "UpdateRoyaltiesArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "expand_domain",
+      "discriminator": [
+        202,
+        77,
+        72,
+        63,
+        33,
+        68,
+        83,
+        189
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "_name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "price_update"
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "receiver",
+          "writable": true
+        },
+        {
+          "name": "receiver_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "payer_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "treasury_mint",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "period",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "extension_update",
+      "discriminator": [
+        97,
+        194,
+        53,
+        76,
+        183,
+        184,
+        252,
+        9
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "extensions",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "ExtensionState"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "force_clear_domain",
+      "discriminator": [
+        197,
+        145,
+        14,
+        118,
+        248,
+        115,
+        105,
+        248
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "_name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "domain"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "new_authority"
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "state"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "force_unregister_domain",
+      "discriminator": [
+        114,
+        42,
+        28,
+        145,
+        150,
+        154,
+        155,
+        45
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "_name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "bump_seed",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "force_update_uri",
+      "discriminator": [
+        121,
+        164,
+        69,
+        145,
+        41,
+        89,
+        70,
+        15
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "metadata",
+          "writable": true
+        },
+        {
+          "name": "mint_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "master_edition",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "state"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "token_metadata_program"
+        },
+        {
+          "name": "sysvar_instruction"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "bump_seed",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "init_dns",
+      "discriminator": [
+        7,
+        128,
+        77,
+        244,
+        70,
+        185,
+        198,
+        150
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "treasury"
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "group",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        },
+        {
+          "name": "group_extension_program",
+          "address": "5hx15GaPPqsYA61v6QpcGPpo125v7rfvEfZQ4dJErG5V"
+        }
+      ],
+      "args": [
+        {
+          "name": "sub_domain_price",
+          "type": "u64"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "symbol",
+          "type": "string"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "royalties",
+          "type": {
+            "defined": {
+              "name": "UpdateRoyaltiesArgs"
+            }
+          }
+        },
+        {
+          "name": "registry_admin",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "modify_royalties",
+      "docs": [
+        "modify royalties of mint"
+      ],
+      "discriminator": [
+        199,
+        95,
+        20,
+        107,
+        136,
+        161,
+        93,
+        137
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mint",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "UpdateRoyaltiesArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "payable_token_add",
+      "discriminator": [
+        110,
+        70,
+        4,
+        42,
+        112,
+        13,
+        249,
+        89
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "payable_token",
+          "type": {
+            "defined": {
+              "name": "PayableToken"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "payable_token_remove",
+      "discriminator": [
+        93,
+        151,
+        177,
+        201,
+        128,
+        169,
+        41,
+        201
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "mint",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "payable_token_update",
+      "discriminator": [
+        193,
+        253,
+        193,
+        32,
+        2,
+        49,
+        149,
+        119
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "payable_tokens",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "PayableToken"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "register_domain",
+      "discriminator": [
+        236,
+        7,
+        208,
+        151,
+        173,
+        149,
+        73,
+        104
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "receiver",
+          "writable": true
+        },
+        {
+          "name": "receiver_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "payer_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "treasury_mint",
+          "writable": true
+        },
+        {
+          "name": "price_update"
+        },
+        {
+          "name": "mint_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true
+        },
+        {
+          "name": "group",
+          "writable": true
+        },
+        {
+          "name": "collection_mint",
+          "writable": true
+        },
+        {
+          "name": "member",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "minter",
+          "writable": true
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "group_extension_program",
+          "address": "5hx15GaPPqsYA61v6QpcGPpo125v7rfvEfZQ4dJErG5V"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "period_year",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "register_subdomain",
+      "discriminator": [
+        154,
+        193,
+        213,
+        248,
+        178,
+        51,
+        94,
+        37
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "receiver",
+          "writable": true
+        },
+        {
+          "name": "receiver_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "payer_ata",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "treasury_mint",
+          "writable": true
+        },
+        {
+          "name": "price_update"
+        },
+        {
+          "name": "mint_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "payer"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "mint_subdomain",
+          "writable": true
+        },
+        {
+          "name": "token_account_subdomain",
+          "writable": true
+        },
+        {
+          "name": "group",
+          "writable": true
+        },
+        {
+          "name": "collection_mint",
+          "writable": true
+        },
+        {
+          "name": "member",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "minter",
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "group_extension_program",
+          "address": "5hx15GaPPqsYA61v6QpcGPpo125v7rfvEfZQ4dJErG5V"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "sub_domain",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "set_primary_domain",
+      "discriminator": [
+        18,
+        2,
+        170,
+        172,
+        190,
+        140,
+        242,
+        27
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "authority"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "primary_domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  105,
+                  109,
+                  97,
+                  114,
+                  121,
+                  95,
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "transfer_domain",
+      "discriminator": [
+        129,
+        115,
+        193,
+        43,
+        174,
+        5,
+        241,
+        52
+      ],
+      "accounts": [
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "_name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "domain"
+          ]
+        },
+        {
+          "name": "receiver",
+          "writable": true
+        },
+        {
+          "name": "sender_account",
+          "writable": true
+        },
+        {
+          "name": "receiver_account",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "ata_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "rent"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "unregister_domain",
+      "discriminator": [
+        28,
+        190,
+        39,
+        122,
+        49,
+        163,
+        14,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "metadata",
+          "writable": true
+        },
+        {
+          "name": "mint_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "master_edition",
+          "writable": true
+        },
+        {
+          "name": "collection_metadata",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "token_metadata_program"
+        },
+        {
+          "name": "sysvar_instruction"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "unregister_subdomain",
+      "discriminator": [
+        97,
+        20,
+        78,
+        170,
+        51,
+        225,
+        239,
+        206
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "sub_domain",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "update_admin",
+      "discriminator": [
+        161,
+        176,
+        40,
+        213,
+        60,
+        184,
+        179,
+        228
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "dns_state"
+          ]
+        },
+        {
+          "name": "new_admin"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_price_rules",
+      "discriminator": [
+        240,
+        236,
+        149,
+        186,
+        243,
+        84,
+        144,
+        126
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "price_rules",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "PriceRule"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_profile",
+      "discriminator": [
+        98,
+        67,
+        99,
+        206,
+        86,
+        115,
+        175,
+        1
+      ],
+      "accounts": [
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "_name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "profile",
+          "type": {
+            "defined": {
+              "name": "Profile"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_registry_admin",
+      "discriminator": [
+        117,
+        216,
+        24,
+        14,
+        25,
+        46,
+        33,
+        40
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "new_registry_admin",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "update_socials",
+      "discriminator": [
+        157,
+        64,
+        216,
+        65,
+        136,
+        251,
+        126,
+        148
+      ],
+      "accounts": [
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "_name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "socials",
+          "type": {
+            "defined": {
+              "name": "SocialMedia"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_sub_domain_price",
+      "discriminator": [
+        84,
+        195,
+        163,
+        248,
+        25,
+        144,
+        118,
+        52
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "dns_state"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "sub_domain_price",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "update_text_records",
+      "discriminator": [
+        241,
+        162,
+        65,
+        31,
+        118,
+        176,
+        102,
+        112
+      ],
+      "accounts": [
+        {
+          "name": "domain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  111,
+                  109,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "_name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "domain",
+            "token_account"
+          ]
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "text_records",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "TextRecord"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_treasury",
+      "discriminator": [
+        60,
+        16,
+        243,
+        66,
+        96,
+        59,
+        254,
+        131
+      ],
+      "accounts": [
+        {
+          "name": "dns_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  110,
+                  115,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "dns_state"
+          ]
+        },
+        {
+          "name": "treasury"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "DnsState",
+      "discriminator": [
+        212,
+        184,
+        33,
+        18,
+        41,
+        35,
+        205,
+        88
+      ]
+    },
+    {
+      "name": "Domain",
+      "discriminator": [
+        167,
+        191,
+        231,
+        63,
+        146,
+        41,
+        115,
+        27
+      ]
+    },
+    {
+      "name": "PriceUpdateV2",
+      "discriminator": [
+        34,
+        241,
+        35,
+        99,
+        157,
+        126,
+        244,
+        205
+      ]
+    },
+    {
+      "name": "PrimaryDomain",
+      "discriminator": [
+        231,
+        255,
+        61,
+        63,
+        142,
+        184,
+        254,
+        42
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "ExpandDomainEvent",
+      "discriminator": [
+        39,
+        110,
+        213,
+        60,
+        144,
+        200,
+        210,
+        192
+      ]
+    },
+    {
+      "name": "InitDnsEvent",
+      "discriminator": [
+        16,
+        118,
+        118,
+        223,
+        73,
+        226,
+        19,
+        181
+      ]
+    },
+    {
+      "name": "RegisterDomainEvent",
+      "discriminator": [
+        160,
+        213,
+        133,
+        79,
+        68,
+        212,
+        26,
+        85
+      ]
+    },
+    {
+      "name": "RegisterSubDomainEvent",
+      "discriminator": [
+        118,
+        151,
+        162,
+        105,
+        13,
+        235,
+        158,
+        224
+      ]
+    },
+    {
+      "name": "SetPrimaryDomainEvent",
+      "discriminator": [
+        135,
+        11,
+        82,
+        113,
+        186,
+        61,
+        247,
+        148
+      ]
+    },
+    {
+      "name": "UnregisterDomainEvent",
+      "discriminator": [
+        53,
+        32,
+        182,
+        6,
+        195,
+        60,
+        40,
+        3
+      ]
+    },
+    {
+      "name": "UnregisterSubdomainEvent",
+      "discriminator": [
+        183,
+        43,
+        145,
+        226,
+        170,
+        188,
+        100,
+        194
+      ]
+    },
+    {
+      "name": "UpdateAdminEvent",
+      "discriminator": [
+        225,
+        152,
+        171,
+        87,
+        246,
+        63,
+        66,
+        234
+      ]
+    },
+    {
+      "name": "UpdateExtensionsEvent",
+      "discriminator": [
+        11,
+        148,
+        7,
+        194,
+        28,
+        58,
+        131,
+        160
+      ]
+    },
+    {
+      "name": "UpdatePayableTokensEvent",
+      "discriminator": [
+        81,
+        223,
+        72,
+        49,
+        86,
+        119,
+        118,
+        29
+      ]
+    },
+    {
+      "name": "UpdatePriceRulesEvent",
+      "discriminator": [
+        108,
+        66,
+        96,
+        91,
+        5,
+        84,
+        169,
+        135
+      ]
+    },
+    {
+      "name": "UpdateProfileEvent",
+      "discriminator": [
+        15,
+        250,
+        133,
+        11,
+        68,
+        57,
+        250,
+        45
+      ]
+    },
+    {
+      "name": "UpdateSocialsEvent",
+      "discriminator": [
+        81,
+        64,
+        185,
+        148,
+        10,
+        32,
+        220,
+        179
+      ]
+    },
+    {
+      "name": "UpdateSubdomainPriceEvent",
+      "discriminator": [
+        19,
+        236,
+        130,
+        208,
+        255,
+        109,
+        86,
+        36
+      ]
+    },
+    {
+      "name": "UpdateTextRecordsEvent",
+      "discriminator": [
+        31,
+        33,
+        36,
+        241,
+        110,
+        113,
+        249,
+        254
+      ]
+    },
+    {
+      "name": "UpdateTreasuryEvent",
+      "discriminator": [
+        104,
+        210,
+        213,
+        227,
+        230,
+        150,
+        146,
+        19
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "SizeExceedsMaxSize",
+      "msg": "Collection size exceeds max size."
+    },
+    {
+      "code": 6001,
+      "name": "MaxSizeBelowCurrentSize",
+      "msg": "Max size cannot be reduced below current size."
+    },
+    {
+      "code": 6002,
+      "name": "CreatorShareInvalid",
+      "msg": "Creators shares must add up to 100."
+    },
+    {
+      "code": 6003,
+      "name": "MissingApproveAccount",
+      "msg": "Missing approve account."
+    },
+    {
+      "code": 6004,
+      "name": "ExpiredApproveAccount",
+      "msg": "Approve account has expired."
+    },
+    {
+      "code": 6005,
+      "name": "InvalidField",
+      "msg": "Invalid field. You cannot use a public key as a field."
+    },
+    {
+      "code": 6006,
+      "name": "CreatorAddressInvalid",
+      "msg": "The Address you provided is invalid. Please provide a valid address."
+    },
+    {
+      "code": 6007,
+      "name": "RoyaltyBasisPointsInvalid",
+      "msg": "Royalty basis points must be less than or equal to 10000."
+    },
+    {
+      "code": 6008,
+      "name": "PlatformFeeBasisPointsInvalid",
+      "msg": "Platform fee basis points must be less than or equal to 10000."
+    },
+    {
+      "code": 6009,
+      "name": "RecipientShareInvalid",
+      "msg": "Recipient shares must add up to 100."
+    },
+    {
+      "code": 6010,
+      "name": "ReservedField",
+      "msg": "The provided field is invalid or reserved."
+    },
+    {
+      "code": 6011,
+      "name": "InvalidNumberOfRecipients",
+      "msg": "Invalid number of platform fee recipients. Exactly 5 recipients are required."
+    }
+  ],
+  "types": [
+    {
+      "name": "CreatorWithShare",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "pubkey"
+          },
+          {
+            "name": "share",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DnsState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "registry_admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "extensions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "ExtensionState"
+                }
+              }
+            }
+          },
+          {
+            "name": "price_rules",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "PriceRule"
+                }
+              }
+            }
+          },
+          {
+            "name": "payable_tokens",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "PayableToken"
+                }
+              }
+            }
+          },
+          {
+            "name": "sub_domain_price",
+            "type": "u64"
+          },
+          {
+            "name": "collection_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "group",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Domain",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "expires_at",
+            "type": "u64"
+          },
+          {
+            "name": "profile",
+            "type": {
+              "defined": {
+                "name": "Profile"
+              }
+            }
+          },
+          {
+            "name": "socials",
+            "type": {
+              "defined": {
+                "name": "SocialMedia"
+              }
+            }
+          },
+          {
+            "name": "text_records",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "TextRecord"
+                }
+              }
+            }
+          },
+          {
+            "name": "subdomains",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "SubDomain"
+                }
+              }
+            }
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "metadata",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExpandDomainEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "expanded_year",
+            "type": "u8"
+          },
+          {
+            "name": "expires_at",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExtensionState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "treasury_address",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "treasury_share",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "ref_share",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "royalties_address",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "royalties_bps",
+            "type": {
+              "option": "u32"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitDnsEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "price_rules",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "PriceRule"
+                }
+              }
+            }
+          },
+          {
+            "name": "payable_tokens",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "PayableToken"
+                }
+              }
+            }
+          },
+          {
+            "name": "sub_domain_price",
+            "type": "u64"
+          },
+          {
+            "name": "collection_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PayableToken",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "price_feed_id",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "fixed_price",
+            "type": {
+              "option": "u64"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "PriceFeedMessage",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "feed_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "price",
+            "type": "i64"
+          },
+          {
+            "name": "conf",
+            "type": "u64"
+          },
+          {
+            "name": "exponent",
+            "type": "i32"
+          },
+          {
+            "name": "publish_time",
+            "docs": [
+              "The timestamp of this price update in seconds"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "prev_publish_time",
+            "docs": [
+              "The timestamp of the previous price update. This field is intended to allow users to",
+              "identify the single unique price update for any moment in time:",
+              "for any time t, the unique update is the one such that prev_publish_time < t <= publish_time.",
+              "",
+              "Note that there may not be such an update while we are migrating to the new message-sending logic,",
+              "as some price updates on pythnet may not be sent to other chains (because the message-sending",
+              "logic may not have triggered). We can solve this problem by making the message-sending mandatory",
+              "(which we can do once publishers have migrated over).",
+              "",
+              "Additionally, this field may be equal to publish_time if the message is sent on a slot where",
+              "where the aggregation was unsuccesful. This problem will go away once all publishers have",
+              "migrated over to a recent version of pyth-agent."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "ema_price",
+            "type": "i64"
+          },
+          {
+            "name": "ema_conf",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PriceRule",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "letter_length",
+            "type": "u8"
+          },
+          {
+            "name": "annual_price",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PriceUpdateV2",
+      "docs": [
+        "A price update account. This account is used by the Pyth Receiver program to store a verified price update from a Pyth price feed.",
+        "It contains:",
+        "- `write_authority`: The write authority for this account. This authority can close this account to reclaim rent or update the account to contain a different price update.",
+        "- `verification_level`: The [`VerificationLevel`] of this price update. This represents how many Wormhole guardian signatures have been verified for this price update.",
+        "- `price_message`: The actual price update.",
+        "- `posted_slot`: The slot at which this price update was posted."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "write_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "verification_level",
+            "type": {
+              "defined": {
+                "name": "VerificationLevel"
+              }
+            }
+          },
+          {
+            "name": "price_message",
+            "type": {
+              "defined": {
+                "name": "PriceFeedMessage"
+              }
+            }
+          },
+          {
+            "name": "posted_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PrimaryDomain",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Profile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "avatar",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "name": "website",
+            "type": "string"
+          },
+          {
+            "name": "shortbio",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RegisterDomainEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "period_year",
+            "type": "u8"
+          },
+          {
+            "name": "expires_at",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RegisterSubDomainEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "subdomain",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SetPrimaryDomainEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SocialMedia",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "telegram",
+            "type": "string"
+          },
+          {
+            "name": "discord",
+            "type": "string"
+          },
+          {
+            "name": "twitter",
+            "type": "string"
+          },
+          {
+            "name": "medium",
+            "type": "string"
+          },
+          {
+            "name": "facebook",
+            "type": "string"
+          },
+          {
+            "name": "other_link",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SubDomain",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "mint",
+            "docs": [
+              "Check"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "group",
+            "docs": [
+              "Check"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "group_mint",
+            "docs": [
+              "Check"
+            ],
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TextRecord",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name_value",
+            "type": "string"
+          },
+          {
+            "name": "link",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UnregisterDomainEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UnregisterSubdomainEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "subdomain",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateAdminEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "new_admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateExtensionsEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "extensions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "ExtensionState"
+                }
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdatePayableTokensEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "payable_tokens",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "PayableToken"
+                }
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdatePriceRulesEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "price_rules",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "PriceRule"
+                }
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateProfileEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "profile",
+            "type": {
+              "defined": {
+                "name": "Profile"
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateRoyaltiesArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "royalty_basis_points",
+            "type": "u16"
+          },
+          {
+            "name": "creators",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "CreatorWithShare"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateSocialsEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "socials",
+            "type": {
+              "defined": {
+                "name": "SocialMedia"
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateSubdomainPriceEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "sub_domain_price",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateTextRecordsEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "text_records",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "TextRecord"
+                }
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateTreasuryEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VerificationLevel",
+      "docs": [
+        "Pyth price updates are bridged to all blockchains via Wormhole.",
+        "Using the price updates on another chain requires verifying the signatures of the Wormhole guardians.",
+        "The usual process is to check the signatures for two thirds of the total number of guardians, but this can be cumbersome on Solana because of the transaction size limits,",
+        "so we also allow for partial verification.",
+        "",
+        "This enum represents how much a price update has been verified:",
+        "- If `Full`, we have verified the signatures for two thirds of the current guardians.",
+        "- If `Partial`, only `num_signatures` guardian signatures have been checked.",
+        "",
+        "# Warning",
+        "Using partially verified price updates is dangerous, as it lowers the threshold of guardians that need to collude to produce a malicious price update."
+      ],
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Partial",
+            "fields": [
+              {
+                "name": "num_signatures",
+                "type": "u8"
+              }
+            ]
+          },
+          {
+            "name": "Full"
+          }
+        ]
+      }
+    }
+  ]
 }

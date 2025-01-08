@@ -1,5 +1,6 @@
 import { PublicKey } from "@solana/web3.js";
 import { PROGRAM_ID_SOLNAME } from "./config";
+import IDL from "./idl/solnames.json";
 
 // PDAs used in the original code
 export const PREFIX_DNS_STATE = "dns_state";
@@ -7,6 +8,7 @@ export const PREFIX_DOMAIN = "domain";
 export const PREFIX_PRIMARY_DOMAIN = "primary_domain";
 export const PREFIX_MINT_AUTHORITY = "mint_authority";
 
+export const InterfaceSolnames = JSON.parse(JSON.stringify(IDL));
 /**
  * Finds the PDA for a domain account by name.
  */
@@ -28,3 +30,4 @@ export function findPrimaryDomainPDA(authority: PublicKey): { pubkey: PublicKey;
   );
   return { pubkey, bump };
 }
+
