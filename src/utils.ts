@@ -30,4 +30,3 @@ export function findPrimaryDomainPDA(authority: PublicKey): { pubkey: PublicKey;
   );
   return { pubkey, bump };
 }
-

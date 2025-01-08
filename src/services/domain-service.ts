@@ -183,12 +183,6 @@ export async function resolveByDomainName(
     const primaryDomainAccount = findPrimaryDomainPDA(
       new PublicKey(ownerPubkey)
     );
-    if (!primaryDomainAccount) {
-
-      throw new Error(
-        `Primary domain account not found for owner: ${ownerPubkey}`
-      );
-    }
 
     // 2) Initialize an Anchor Provider and Program instance
     const program = getProgram(connection);

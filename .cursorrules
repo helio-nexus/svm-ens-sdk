@@ -105,12 +105,6 @@ import { getTokenMetadata, TOKEN_2022_PROGRAM_ID } from "@solana/spl-token";
       });
 ```
 
-### Auth Rules
-
-Follow these rules when working on auth.
-
-It uses Clerk for authentication.
-
 #### General Rules
 
 - put service into services folder

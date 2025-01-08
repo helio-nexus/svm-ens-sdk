@@ -1,6 +1,6 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 
-export const DEFAULT_ENDPOINT = process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com";
+export const DEFAULT_ENDPOINT = process.env.SOLANA_RPC_URL || "https://mainnetbeta-rpc.eclipse.xyz";
 export const COMMITMENT = "confirmed";
 
 // For your local usage or tests, you can override the endpoint above
